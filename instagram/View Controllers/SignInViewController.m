@@ -11,11 +11,10 @@
 
 @interface SignInViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
+- (IBAction)signupButtonTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 - (IBAction)loginButtonTapped:(id)sender;
-- (IBAction)sigupButtonTapped:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UIButton *signUpButtonTapped;
+
 
 @end
 
@@ -36,7 +35,7 @@
     
     // set user properties
     newUser.username = self.usernameField.text;
-    newUser.email = self.emailField.text;
+    //newUser.email = self.emailField.text;
     newUser.password = self.passwordField.text;
     
     // call sign up function on the object
@@ -66,6 +65,30 @@
     }];
 }
 
+- (UIAlertController *) createAlert {
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Hey!"
+                                                                   message:@"You left a field blank :("
+                                                            preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             // handle cancel response here. Doing nothing will dismiss the view.
+                                                         }];
+    [alert addAction:cancelAction];
+    
+    // create an OK action
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                         // handle response here.
+                                                     }];
+    // add the OK action to the alert controller
+    [alert addAction:okAction];
+    return alert;
+    
+}
+
 /*
 #pragma mark - Navigation
 
@@ -77,11 +100,25 @@
 */
 
 - (IBAction)loginButtonTapped:(id)sender {
+    if (([self.usernameField.text isEqual:@""]) || ([self.passwordField.text isEqualToString:@""])) {
+        UIAlertController *alert = [self createAlert];
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+    } else {
     [self loginUser];
-     [self performSegueWithIdentifier:@"signInSegue" sender:nil];
+    [self performSegueWithIdentifier:@"signInSegue" sender:nil];
+    }
 }
 
-- (IBAction)sigupButtonTapped:(id)sender {
-    [self registerUser];
+- (IBAction)signupButtonTapped:(id)sender {
+    if (([self.usernameField.text isEqual:@""]) || ([self.passwordField.text isEqualToString:@""])) {
+        UIAlertController *alert = [self createAlert];
+        [self presentViewController:alert animated:YES completion:^{
+            
+        }];
+    } else {
+        [self registerUser];
+    }
 }
 @end
