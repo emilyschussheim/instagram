@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SignInViewController.h
 //  instagram
 //
 //  Created by Emily Schussheim on 7/8/18.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface SignInViewController : UIViewController
 
 @end
-
