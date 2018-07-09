@@ -23,6 +23,7 @@
 		F3A2694720F319F4009CD3C2 /* TimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A2694620F319F4009CD3C2 /* TimeLineViewController.m */; };
 		F3A2699120F3FC87009CD3C2 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A2699020F3FC87009CD3C2 /* Post.m */; };
 		F3A269A220F40127009CD3C2 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269A120F40127009CD3C2 /* PostCell.m */; };
+		F3A269AE20F4149F009CD3C2 /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269AD20F4149F009CD3C2 /* NewPostViewController.m */; };
 		FA61960317DE9A1707E53073 /* libPods-instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DABFCC955345D85CE711F66 /* libPods-instagram.a */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		F3A2699020F3FC87009CD3C2 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		F3A269A020F40127009CD3C2 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		F3A269A120F40127009CD3C2 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		F3A269AC20F4149F009CD3C2 /* NewPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewPostViewController.h; sourceTree = "<group>"; };
+		F3A269AD20F4149F009CD3C2 /* NewPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewPostViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,8 @@
 		F3A2699720F3FF67009CD3C2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F3A269AC20F4149F009CD3C2 /* NewPostViewController.h */,
+				F3A269AD20F4149F009CD3C2 /* NewPostViewController.m */,
 				F3A2694220F31967009CD3C2 /* SignInViewController.h */,
 				F3A2694320F31967009CD3C2 /* SignInViewController.m */,
 				F3A2694620F319F4009CD3C2 /* TimeLineViewController.m */,
@@ -471,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3A269AE20F4149F009CD3C2 /* NewPostViewController.m in Sources */,
 				F3A2699120F3FC87009CD3C2 /* Post.m in Sources */,
 				F3A2694420F31967009CD3C2 /* SignInViewController.m in Sources */,
 				F3A2692020F2F918009CD3C2 /* main.m in Sources */,

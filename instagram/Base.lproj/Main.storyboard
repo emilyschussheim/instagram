@@ -69,14 +69,59 @@
                     <connections>
                         <outlet property="passwordField" destination="a4L-08-kX5" id="uzM-9o-NFg"/>
                         <outlet property="usernameField" destination="fcR-Gq-zuW" id="dQc-6E-v9J"/>
-                        <segue destination="bsZ-kM-2gU" kind="show" identifier="signInSegue" id="XDT-7i-Fm4"/>
+                        <segue destination="yzl-Wf-5s8" kind="show" identifier="signInSegue" id="XDT-7i-Fm4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="308" y="80.50974512743629"/>
         </scene>
-        <!--Time Line View Controller-->
+        <!--New Post-->
+        <scene sceneID="R8O-m5-YXQ">
+            <objects>
+                <viewController id="qWP-A0-PgA" customClass="NewPostViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JWU-rl-Bbu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEh-QL-diK">
+                                <rect key="frame" x="83" y="94" width="208" height="155"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Take a Photo / Pick One"/>
+                                <connections>
+                                    <action selector="addPhotoTapped:" destination="qWP-A0-PgA" eventType="touchUpInside" id="iXr-Tu-Wgi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9G-zV-Nr1">
+                                <rect key="frame" x="172" y="347" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Post"/>
+                                <connections>
+                                    <action selector="postTapped:" destination="qWP-A0-PgA" eventType="touchUpInside" id="QmS-hc-hUm"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your caption" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Azq-Rz-wGh">
+                                <rect key="frame" x="59" y="279" width="257" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="SKU-e2-L1X"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="New Post" image="insta_camera_btn" id="8FC-SI-JFp"/>
+                    <connections>
+                        <outlet property="captionTextField" destination="Azq-Rz-wGh" id="KuA-QX-NlM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgZ-xs-UI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2436" y="-372.86356821589209"/>
+        </scene>
+        <!--Home-->
         <scene sceneID="5oH-qL-jWP">
             <objects>
                 <viewController id="bsZ-kM-2gU" customClass="TimeLineViewController" sceneMemberID="viewController">
@@ -120,13 +165,36 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="HEn-SE-GaN"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="feed_tab" id="PaY-uP-07f"/>
                     <connections>
                         <outlet property="tableView" destination="VWK-Lk-XXT" id="Ghd-uM-aNt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="40l-jc-gHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2436" y="458"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="t71-RD-JuH">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yzl-Wf-5s8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8d4-vH-y3P">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="bsZ-kM-2gU" kind="relationship" relationship="viewControllers" id="OQN-Ia-kmF"/>
+                        <segue destination="qWP-A0-PgA" kind="relationship" relationship="viewControllers" id="Klz-0M-Utu"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EZu-xN-a9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="1189.5999999999999" y="80.50974512743629"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="feed_tab" width="25" height="25"/>
+        <image name="insta_camera_btn" width="25" height="25"/>
+    </resources>
 </document>
