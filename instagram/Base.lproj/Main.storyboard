@@ -187,6 +187,7 @@
                                         <connections>
                                             <outlet property="captionLabel" destination="3SO-oa-OJ6" id="B4C-kU-aU9"/>
                                             <outlet property="pictureView" destination="Sw1-bk-DOv" id="RLo-Wp-hv5"/>
+                                            <segue destination="PHi-tY-isX" kind="show" identifier="detailsSegue" id="FHk-Lg-H8Z"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -204,12 +205,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="VWK-Lk-XXT" id="Ghd-uM-aNt"/>
-                        <segue destination="PHi-tY-isX" kind="show" identifier="detailsSegue" id="mvt-th-s29"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="40l-jc-gHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3342" y="278"/>
+            <point key="canvasLocation" x="3341.5999999999999" y="277.51124437781112"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="pyS-T2-bzI">

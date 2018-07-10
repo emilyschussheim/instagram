@@ -64,13 +64,15 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-    }];
-    
-    
+    }];  
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
+}
+- (void)tableView:(UITableView *)tableView didTap:(PostCell *)postCell {
+    
+    [self performSegueWithIdentifier:@"detailsSegue" sender:postCell];
 }
 
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -85,5 +87,6 @@
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
     }];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

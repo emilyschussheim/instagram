@@ -21,6 +21,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+- (void)setUI {
+    self.captionLabel.text = self.post.caption;
+    NSData *data = [self.post.image getData];
+    self.pictureView.image = [UIImage imageWithData:data];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
