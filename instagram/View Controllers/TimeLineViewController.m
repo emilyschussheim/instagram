@@ -10,8 +10,10 @@
 #import "Post.h"
 #import "PostCell.h"
 #import "Parse/Parse.h"
+#import "Post.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface TimeLineViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
@@ -21,32 +23,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initImagePickerController];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
     
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-}
-- (void)initImagePickerController {
-
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
-    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
-
-
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -54,13 +39,24 @@
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
     cell.captionLabel.text = post.caption;
-    cell.pictureView
+    [cell.pictureView setImageWithURL:(NSURL *)post.image];
+    return cell;
+}
+- (void) onTimer {
     
-//    ChatCellTableViewCell *chatCell = [tableView dequeueReusableCellWithIdentifier:@"ChatCellTableViewCell" forIndexPath:indexPath];
-//    NSDictionary *chat = self.chats[indexPath.row];
-//    NSString *text = chat[@"text"];
-//    chatCell.chatLabel.text = text;
-//    return chatCell;
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    query.limit = 20;
+    
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            self.posts = posts;
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

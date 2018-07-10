@@ -7,10 +7,14 @@
 //
 
 #import "NewPostViewController.h"
+#import "Post.h"
+#import <Parse/Parse.h>
 
-@interface NewPostViewController ()
+@interface NewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate> 
 - (IBAction)addPhotoTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *captionTextField;
+@property (strong, nonatomic) UIImage *image;
+@property CGSize size;
 - (IBAction)postTapped:(id)sender;
 
 @end
@@ -19,7 +23,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    CGFloat width = 20;
+    CGFloat height = 20;
+    self.size = CGSizeMake(width, height);
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,30 +48,55 @@
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
     // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
-    
-    // Do something with the images (based on your use case)
-    
-    // Dismiss UIImagePickerController to go back to your original view controller
+    //UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    NSLog(@"IMAGE WAS PICKED");
+    [self resizeImage:originalImage withSize:self.size];
+    self.image = originalImage;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) createImagePickerController {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
 }
-*/
 
 - (IBAction)addPhotoTapped:(id)sender {
+    [self createImagePickerController];
 }
 - (IBAction)postTapped:(id)sender {
+    
+    [Post postUserImage:self.image withCaption:self.captionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+        NSLog(@"image sent to parse!");
+        } else {
+            NSLog(@"image failed to go to parse");
+        }
+    }];
+    self.captionTextField.text = @"";
+    [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
 }
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 @end
