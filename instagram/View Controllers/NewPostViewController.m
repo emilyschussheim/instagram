@@ -52,8 +52,8 @@
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     //UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     NSLog(@"IMAGE WAS PICKED");
-    UIImage *newImage = [self resizeImage:originalImage withSize:self.size];
-    self.image = newImage;
+    //UIImage *newImage = [self resizeImage:originalImage withSize:self.size];
+    self.image = originalImage;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -26,6 +26,7 @@
 		F3A269AE20F4149F009CD3C2 /* NewPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269AD20F4149F009CD3C2 /* NewPostViewController.m */; };
 		F3A269B120F43C00009CD3C2 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269B020F43C00009CD3C2 /* TabViewController.m */; };
 		F3A269B420F46C33009CD3C2 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269B320F46C33009CD3C2 /* DetailsViewController.m */; };
+		F3A269BA20F56287009CD3C2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269B920F56287009CD3C2 /* ProfileViewController.m */; };
 		FA61960317DE9A1707E53073 /* libPods-instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DABFCC955345D85CE711F66 /* libPods-instagram.a */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,8 @@
 		F3A269B020F43C00009CD3C2 /* TabViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		F3A269B220F46C33009CD3C2 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		F3A269B320F46C33009CD3C2 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		F3A269B820F56287009CD3C2 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		F3A269B920F56287009CD3C2 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +245,8 @@
 		F3A2699720F3FF67009CD3C2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F3A269B820F56287009CD3C2 /* ProfileViewController.h */,
+				F3A269B920F56287009CD3C2 /* ProfileViewController.m */,
 				F3A269B220F46C33009CD3C2 /* DetailsViewController.h */,
 				F3A269B320F46C33009CD3C2 /* DetailsViewController.m */,
 				F3A269AF20F43C00009CD3C2 /* TabViewController.h */,
@@ -432,10 +437,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-instagram/Pods-instagram-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
+				"${PODS_ROOT}/NSDate+TimeAgo/NSDateTimeAgo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NSDateTimeAgo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +499,7 @@
 				F3A2699120F3FC87009CD3C2 /* Post.m in Sources */,
 				F3A2694420F31967009CD3C2 /* SignInViewController.m in Sources */,
 				F3A2692020F2F918009CD3C2 /* main.m in Sources */,
+				F3A269BA20F56287009CD3C2 /* ProfileViewController.m in Sources */,
 				F3A269B120F43C00009CD3C2 /* TabViewController.m in Sources */,
 				F3A2691220F2F916009CD3C2 /* AppDelegate.m in Sources */,
 				F3A269B420F46C33009CD3C2 /* DetailsViewController.m in Sources */,

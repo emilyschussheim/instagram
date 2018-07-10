@@ -27,4 +27,6 @@
 
 }
 
+- (IBAction)likeTapped:(id)sender {
+}
 @end

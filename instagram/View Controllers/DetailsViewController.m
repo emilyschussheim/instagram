@@ -7,6 +7,8 @@
 //
 
 #import "DetailsViewController.h"
+#import "NSDate+TimeAgo.h"
+#import "DateTools.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
@@ -19,12 +21,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setUI];
+   
 }
 - (void)setUI {
     self.captionLabel.text = self.post.caption;
     NSData *data = [self.post.image getData];
     self.pictureView.image = [UIImage imageWithData:data];
+    
+    
+    NSDate *postDate = self.post.createdAt;
+    NSString *date = [postDate timeAgo];
+    self.timeStampLabel.text = date;
     
 }
 

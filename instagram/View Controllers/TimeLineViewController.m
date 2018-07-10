@@ -13,7 +13,7 @@
 #import "Post.h"
 #import "DetailsViewController.h"
 
-@interface TimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface TimeLineViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 - (IBAction)logoutTapped:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -34,6 +34,13 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
+    
+    UIImage *img = [UIImage imageNamed:@"Instagram_logo.svg"];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [imgView setImage:img];
+    // setContent mode aspect fit
+    [imgView setContentMode:UIViewContentModeScaleAspectFit];
+    self.navigationItem.titleView = imgView;
     
 }
 
