@@ -11,11 +11,13 @@
 #import "PostCell.h"
 #import "Parse/Parse.h"
 #import "Post.h"
-#import "UIImageView+AFNetworking.h"
+#import "DetailsViewController.h"
 
 @interface TimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
+- (IBAction)logoutTapped:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *posts;
 @end
 
@@ -23,8 +25,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(onTimer) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(onTimer) userInfo:nil repeats:true];
     
@@ -38,24 +45,27 @@
     
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     Post *post = self.posts[indexPath.row];
-    cell.captionLabel.text = post.caption;
-    [cell.pictureView setImageWithURL:(NSURL *)post.image];
+    cell.post = post;
     return cell;
 }
 - (void) onTimer {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    query.limit = 20;
+    PFQuery *postQuery = [Post query];
+    [postQuery orderByDescending:@"createdAt"];
+    [postQuery includeKey:@"author"];
+    postQuery.limit = 20;
     
     // fetch data asynchronously
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
+    [postQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts) {
             self.posts = posts;
+            [self.refreshControl endRefreshing];
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    
     
 }
 
@@ -63,15 +73,17 @@
     return self.posts.count;
 }
 
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
+         if ([segue.identifier isEqualToString:@"detailsSegue"]) {
+             PostCell *tappedCell = sender;
+             DetailsViewController *detailsViewController = [segue destinationViewController];
+             detailsViewController.post = tappedCell.post;
+         }
  }
- */
 
+- (IBAction)logoutTapped:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+    }];
+}
 @end

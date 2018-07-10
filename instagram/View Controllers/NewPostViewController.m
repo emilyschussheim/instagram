@@ -23,8 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGFloat width = 20;
-    CGFloat height = 20;
+    CGFloat width = 200;
+    CGFloat height = 200;
     self.size = CGSizeMake(width, height);
 
 }
@@ -52,8 +52,8 @@
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     //UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     NSLog(@"IMAGE WAS PICKED");
-    [self resizeImage:originalImage withSize:self.size];
-    self.image = originalImage;
+    UIImage *newImage = [self resizeImage:originalImage withSize:self.size];
+    self.image = newImage;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -61,7 +61,6 @@
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
     imagePickerVC.allowsEditing = YES;
-    imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     [self presentViewController:imagePickerVC animated:YES completion:nil];
     
@@ -82,12 +81,13 @@
     [Post postUserImage:self.image withCaption:self.captionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
         NSLog(@"image sent to parse!");
+            self.captionTextField.text = @"";
+            [self performSegueWithIdentifier:@"afterPostSegue" sender:(sender)];
         } else {
             NSLog(@"image failed to go to parse");
         }
     }];
-    self.captionTextField.text = @"";
-    [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+    
 }
 
 /*

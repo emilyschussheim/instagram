@@ -15,6 +15,13 @@
     
 }
 
+-(void)setPost:(Post *)post {
+    _post = post;
+    self.captionLabel.text = post.caption;
+    NSData *data = [post.image getData];
+    self.imageView.image = [UIImage imageWithData:data];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
