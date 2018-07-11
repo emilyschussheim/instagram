@@ -218,11 +218,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="VWK-Lk-XXT" id="Ghd-uM-aNt"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="tdq-bg-KEQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="40l-jc-gHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3341.5999999999999" y="277.51124437781112"/>
+            <point key="canvasLocation" x="4280.8000000000002" y="277.51124437781112"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="pyS-T2-bzI">
@@ -236,24 +237,24 @@
                                 <rect key="frame" x="-1" y="117" width="376" height="278"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption for the details view of the image" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2Z-dc-8OR">
-                                <rect key="frame" x="14" y="435" width="345" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time Stamp" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mth-Fz-192">
                                 <rect key="frame" x="14" y="404" width="354" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="instausernameeee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyL-Fh-T0q">
-                                <rect key="frame" x="14" y="81" width="141" height="21"/>
+                                <rect key="frame" x="14" y="81" width="150" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption for the details view of the image" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2Z-dc-8OR">
+                                <rect key="frame" x="0.0" y="430" width="375" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -271,7 +272,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdr-n6-v29" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4312.8000000000002" y="277.51124437781112"/>
+            <point key="canvasLocation" x="5252" y="277.51124437781112"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="t71-RD-JuH">
@@ -285,12 +286,12 @@
                     <connections>
                         <segue destination="8vf-q7-P7N" kind="relationship" relationship="viewControllers" id="OQN-Ia-kmF"/>
                         <segue destination="OFP-Zg-bcs" kind="relationship" relationship="viewControllers" id="Klz-0M-Utu"/>
-                        <segue destination="AQv-2E-agn" kind="relationship" relationship="viewControllers" id="ahX-TQ-Z52"/>
+                        <segue destination="QWY-ZC-CSf" kind="relationship" relationship="viewControllers" id="ahX-TQ-Z52"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZu-xN-a9E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1189.5999999999999" y="80.50974512743629"/>
+            <point key="canvasLocation" x="1391" y="68"/>
         </scene>
         <!--New Post-->
         <scene sceneID="1qN-p8-re4">
@@ -311,7 +312,7 @@
             </objects>
             <point key="canvasLocation" x="2270" y="-690"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="WZc-MY-CwQ">
             <objects>
                 <viewController id="AQv-2E-agn" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -378,14 +379,20 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Profile" image="profile_tab" selectedImage="profile_tab" id="Bft-3H-HJp"/>
+                    <navigationItem key="navigationItem" id="PPz-sm-JDU">
+                        <barButtonItem key="rightBarButtonItem" title="Set Profile" id="DOO-ua-4Kx">
+                            <connections>
+                                <action selector="setProfileTapped:" destination="AQv-2E-agn" id="Idc-8Y-OwM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="dWe-P3-Hzc" id="FyI-x3-aKb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIW-zQ-Rk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1704.8" y="895.50224887556226"/>
+            <point key="canvasLocation" x="2644" y="895.50224887556226"/>
         </scene>
         <!--Home-->
         <scene sceneID="lvM-4P-b8i">
@@ -404,7 +411,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0M-Ur-I2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2401" y="279"/>
+            <point key="canvasLocation" x="3340" y="278.41079460269867"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="hNk-NK-pNG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QWY-ZC-CSf" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile_tab" selectedImage="profile_tab" id="Bft-3H-HJp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Oc8-aL-Pyh">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AQv-2E-agn" kind="relationship" relationship="rootViewController" id="jgk-5h-ESx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2vw-6W-Rsw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1704.8" y="895.50224887556226"/>
         </scene>
     </scenes>
     <resources>

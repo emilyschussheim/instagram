@@ -19,8 +19,12 @@
 -(void)setPost:(Post *)post {
     _post = post;
     self.captionLabel.text = post.caption;
+    PFUser *user = self.post[@"author"];
+    NSString *username = user.username;
     
-    self.usernameLabel.text = self.post.author.username;
+    self.usernameLabel.text = username;
+    //query for a USER with the same USERNAME
+    //use that user's propic 
     
 //    NSData *data = [post.image getData];
 //    self.imageView.image = [UIImage imageWithData:data];

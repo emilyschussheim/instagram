@@ -10,9 +10,13 @@
 #import <Parse/Parse.h>
 #import "PostCell.h"
 #import "Post.h"
+#import "ImagePickerController.h"
+#import "User.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)setProfileTapped:(id)sender;
+@property (strong, nonatomic) UIImage *image;
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *posts;
@@ -23,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,9 +35,13 @@
     // Dispose of any resources that can be recreated.
 }
 - (void) onTimer {
-    NSString *username = [PFUser currentUser][@"username"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = %@", username];
-    PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:predicate];
+    
+    PFUser *user = [PFUser currentUser];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query whereKey:@"author" equalTo:user];
+    [query includeKey:@"author"];
+    query.limit = 20;
     
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
@@ -57,5 +65,23 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    //UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    NSLog(@"IMAGE WAS PICKED");
+    
+    CGFloat width = 200;
+    CGFloat height = 200;
+    CGSize size = CGSizeMake(width, height);
 
+    
+    UIImage *newImage = [ImagePickerController resizeImage:originalImage withSize:size];
+    self.image = newImage;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)setProfileTapped:(id)sender {
+    UIImagePickerController *imagePickerVC = [ImagePickerController createImagePickerControllerwith:self];
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+}
 @end

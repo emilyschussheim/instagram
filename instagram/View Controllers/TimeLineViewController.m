@@ -133,6 +133,7 @@ InfiniteScrollActivityView* loadingMoreView;
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         // PFUser.current() will now be nil
     }];
+    [self performSegueWithIdentifier:@"logoutSegue" sender:self];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
