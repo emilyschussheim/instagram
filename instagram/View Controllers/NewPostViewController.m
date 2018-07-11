@@ -10,6 +10,7 @@
 #import "Post.h"
 #import <Parse/Parse.h>
 #import "MBProgressHUD.h"
+#import "ImagePickerController.h"
 
 @interface NewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate> 
 - (IBAction)addPhotoTapped:(id)sender;
@@ -21,6 +22,7 @@
 @end
 
 @implementation NewPostViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,58 +36,29 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
+
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    // Get the image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     //UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     NSLog(@"IMAGE WAS PICKED");
-    //UIImage *newImage = [self resizeImage:originalImage withSize:self.size];
-    self.image = originalImage;
+    UIImage *newImage = [ImagePickerController resizeImage:originalImage withSize:self.size];
+    self.image = newImage;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void) createImagePickerController {
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
-    
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-}
-
 - (IBAction)addPhotoTapped:(id)sender {
-    [self createImagePickerController];
+    UIImagePickerController *imagePickerVC = [ImagePickerController createImagePickerControllerwith:self];
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
 - (IBAction)postTapped:(id)sender {
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
     [Post postUserImage:self.image withCaption:self.captionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
         NSLog(@"image sent to parse!");
             self.captionTextField.text = @"";
-             [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self performSegueWithIdentifier:@"afterPostSegue" sender:(sender)];
         } else {
             NSLog(@"image failed to go to parse");

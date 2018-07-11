@@ -12,7 +12,8 @@
 #import "Post.h"
 
 @interface ProfileViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *posts;
 
@@ -30,7 +31,8 @@
     // Dispose of any resources that can be recreated.
 }
 - (void) onTimer {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = %@", [PFUser currentUser]];
+    NSString *username = [PFUser currentUser][@"username"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"author = %@", username];
     PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:predicate];
     
     // fetch data asynchronously

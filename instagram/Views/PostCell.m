@@ -7,6 +7,7 @@
 //
 
 #import "PostCell.h"
+#import <UIImageView+AFNetworking.h>
 
 @implementation PostCell
 
@@ -18,9 +19,13 @@
 -(void)setPost:(Post *)post {
     _post = post;
     self.captionLabel.text = post.caption;
-    NSData *data = [post.image getData];
+    
     self.usernameLabel.text = self.post.author.username;
-    self.imageView.image = [UIImage imageWithData:data];
+    
+//    NSData *data = [post.image getData];
+//    self.imageView.image = [UIImage imageWithData:data];
+    NSURL *url = [NSURL URLWithString:self.post.image.url];
+    [self.pictureView setImageWithURL:url];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

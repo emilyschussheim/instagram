@@ -35,6 +35,14 @@ InfiniteScrollActivityView* loadingMoreView;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    [self setUI];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void) setUI {
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(onTimer) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -58,10 +66,6 @@ InfiniteScrollActivityView* loadingMoreView;
     insets.bottom += InfiniteScrollActivityView.defaultHeight;
     self.tableView.contentInset = insets;
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
