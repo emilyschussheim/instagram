@@ -19,6 +19,7 @@
     _post = post;
     self.captionLabel.text = post.caption;
     NSData *data = [post.image getData];
+    self.usernameLabel.text = self.post.author.username;
     self.imageView.image = [UIImage imageWithData:data];
 }
 

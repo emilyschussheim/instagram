@@ -11,6 +11,7 @@
 #import "DateTools.h"
 
 @interface DetailsViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeStampLabel;
@@ -28,6 +29,8 @@
     self.captionLabel.text = self.post.caption;
     NSData *data = [self.post.image getData];
     self.pictureView.image = [UIImage imageWithData:data];
+    
+    self.usernameLabel.text = self.post.author.username;
     
     
     NSDate *postDate = self.post.createdAt;

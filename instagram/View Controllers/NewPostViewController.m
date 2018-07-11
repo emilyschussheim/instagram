@@ -9,6 +9,7 @@
 #import "NewPostViewController.h"
 #import "Post.h"
 #import <Parse/Parse.h>
+#import "MBProgressHUD.h"
 
 @interface NewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate> 
 - (IBAction)addPhotoTapped:(id)sender;
@@ -78,10 +79,13 @@
 }
 - (IBAction)postTapped:(id)sender {
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [Post postUserImage:self.image withCaption:self.captionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
         NSLog(@"image sent to parse!");
             self.captionTextField.text = @"";
+             [MBProgressHUD showHUDAddedTo:self.view animated:NO];
             [self performSegueWithIdentifier:@"afterPostSegue" sender:(sender)];
         } else {
             NSLog(@"image failed to go to parse");

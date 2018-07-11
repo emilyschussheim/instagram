@@ -12,6 +12,8 @@
 #import "Parse/Parse.h"
 #import "Post.h"
 #import "DetailsViewController.h"
+#import "InfiniteScrollActivityView.h"
+#import "MBProgressHUD.h"
 
 @interface TimeLineViewController () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 - (IBAction)logoutTapped:(id)sender;
@@ -19,9 +21,13 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *posts;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
 @end
 
 @implementation TimeLineViewController
+
+bool isMoreDataLoading = false;
+InfiniteScrollActivityView* loadingMoreView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,10 +48,37 @@
     [imgView setContentMode:UIViewContentModeScaleAspectFit];
     self.navigationItem.titleView = imgView;
     
+    // Set up Infinite Scroll loading indicator
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    loadingMoreView.hidden = true;
+    [self.tableView addSubview:loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            loadingMoreView.frame = frame;
+            [loadingMoreView startAnimating];
+            [self onTimer];
+
+        }
+        
+    }
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -67,6 +100,8 @@
         if (posts) {
             self.posts = posts;
             [self.refreshControl endRefreshing];
+            [loadingMoreView stopAnimating];
+            self.isMoreDataLoading = false;
             [self.tableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
