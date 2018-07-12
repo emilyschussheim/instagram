@@ -84,7 +84,7 @@
     [self presentViewController:imagePickerVC animated:YES completion:nil];
     if (self.image) {
         PFUser *user = [PFUser currentUser];
-        user.profileImage = [Post getPFFileFromImage:self.image];
+        user[@"profileImage"] = [Post getPFFileFromImage:self.image];
         [user saveInBackground];
     }
 }
