@@ -8,6 +8,7 @@
 
 #import "PostCell.h"
 #import <UIImageView+AFNetworking.h>
+#import <Parse/Parse.h>
 
 @implementation PostCell
 
@@ -21,13 +22,12 @@
     self.captionLabel.text = post.caption;
     PFUser *user = self.post[@"author"];
     NSString *username = user.username;
+    if (user.profileImage) {
+        NSURL *propicURL = [NSURL URLWithString:user.profileImage];
+    }
     
     self.usernameLabel.text = username;
-    //query for a USER with the same USERNAME
-    //use that user's propic 
     
-//    NSData *data = [post.image getData];
-//    self.imageView.image = [UIImage imageWithData:data];
     NSURL *url = [NSURL URLWithString:self.post.image.url];
     [self.pictureView setImageWithURL:url];
 }

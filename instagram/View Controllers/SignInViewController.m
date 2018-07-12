@@ -8,7 +8,6 @@
 
 #import "SignInViewController.h"
 #import "Parse/Parse.h"
-#import "User.h"
 
 @interface SignInViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -32,13 +31,12 @@
 }
 - (void)registerUser {
     // initialize a user object
-    User *newUser = [User new];
+    PFUser *newUser = [PFUser new];
     
     // set user properties
     newUser.username = self.usernameField.text;
     //newUser.email = self.emailField.text;
     newUser.password = self.passwordField.text;
-    newUser.userString = @"string set at register";
     
     // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
@@ -56,7 +54,7 @@
     NSString *username = self.usernameField.text;
     NSString *password = self.passwordField.text;
     
-    [User logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
+    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
         } else {

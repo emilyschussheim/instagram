@@ -29,7 +29,6 @@
 		F3A269BA20F56287009CD3C2 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269B920F56287009CD3C2 /* ProfileViewController.m */; };
 		F3A269BD20F5842B009CD3C2 /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269BC20F5842B009CD3C2 /* InfiniteScrollActivityView.m */; };
 		F3A269C020F5CC05009CD3C2 /* ImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269BF20F5CC05009CD3C2 /* ImagePickerController.m */; };
-		F3A269C520F6C7A6009CD3C2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A269C420F6C7A6009CD3C2 /* User.m */; };
 		FA61960317DE9A1707E53073 /* libPods-instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DABFCC955345D85CE711F66 /* libPods-instagram.a */; };
 /* End PBXBuildFile section */
 
@@ -103,8 +102,6 @@
 		F3A269BC20F5842B009CD3C2 /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InfiniteScrollActivityView.m; path = instagram/Views/InfiniteScrollActivityView.m; sourceTree = SOURCE_ROOT; };
 		F3A269BE20F5CC05009CD3C2 /* ImagePickerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePickerController.h; sourceTree = "<group>"; };
 		F3A269BF20F5CC05009CD3C2 /* ImagePickerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePickerController.m; sourceTree = "<group>"; };
-		F3A269C320F6C7A6009CD3C2 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		F3A269C420F6C7A6009CD3C2 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,8 +244,6 @@
 			children = (
 				F3A2698F20F3FC87009CD3C2 /* Post.h */,
 				F3A2699020F3FC87009CD3C2 /* Post.m */,
-				F3A269C320F6C7A6009CD3C2 /* User.h */,
-				F3A269C420F6C7A6009CD3C2 /* User.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -510,7 +505,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3A269C520F6C7A6009CD3C2 /* User.m in Sources */,
 				F3A269AE20F4149F009CD3C2 /* NewPostViewController.m in Sources */,
 				F3A2699120F3FC87009CD3C2 /* Post.m in Sources */,
 				F3A2694420F31967009CD3C2 /* SignInViewController.m in Sources */,

@@ -11,7 +11,6 @@
 #import "PostCell.h"
 #import "Post.h"
 #import "ImagePickerController.h"
-#import "User.h"
 
 @interface ProfileViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -83,5 +82,10 @@
 - (IBAction)setProfileTapped:(id)sender {
     UIImagePickerController *imagePickerVC = [ImagePickerController createImagePickerControllerwith:self];
     [self presentViewController:imagePickerVC animated:YES completion:nil];
+    if (self.image) {
+        PFUser *user = [PFUser currentUser];
+        user.profileImage = [Post getPFFileFromImage:self.image];
+        [user saveInBackground];
+    }
 }
 @end

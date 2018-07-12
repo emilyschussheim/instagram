@@ -12,7 +12,7 @@
 
 @interface User : PFUser<PFSubclassing>
 
-@property (strong, nonatomic) NSString *userString;
+@property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *password;
 

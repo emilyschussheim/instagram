@@ -10,7 +10,7 @@
 
 @implementation User
 
-@dynamic userString;
+@dynamic url;
 @dynamic username;
 @dynamic password;
 
@@ -18,12 +18,7 @@
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     User *newUser = [User new];
-    newUser.userString = @"USER STRING :D";
-//    newPost.image = [self getPFFileFromImage:image];
-//    newPost.author = [PFUser currentUser];
-//    newPost.caption = caption;
-//    newPost.likeCount = @(0);
-//    newPost.commentCount = @(0);
+    newUser.username = [PFUser currentUser][@"username"];
     
     [newUser saveInBackgroundWithBlock: completion];
 }
