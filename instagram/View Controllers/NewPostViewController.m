@@ -13,8 +13,9 @@
 #import "ImagePickerController.h"
 
 @interface NewPostViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate> 
+@property (weak, nonatomic) IBOutlet UIButton *imageButton;
 - (IBAction)addPhotoTapped:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *captionTextField;
+@property (weak, nonatomic) IBOutlet UITextView *captionTextField;
 @property (strong, nonatomic) UIImage *image;
 @property CGSize size;
 - (IBAction)postTapped:(id)sender;

@@ -86,6 +86,7 @@
         PFUser *user = [PFUser currentUser];
         user[@"profileImage"] = [Post getPFFileFromImage:self.image];
         [user saveInBackground];
+        self.image = nil;
     }
 }
 @end

@@ -14,8 +14,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *propicImage;
+- (IBAction)propicTapped:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *likeLabel;
 - (IBAction)likeTapped:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (strong, nonatomic) Post *post;
 @end

@@ -34,6 +34,10 @@
     
     NSURL *url = [NSURL URLWithString:self.post.image.url];
     [self.pictureView setImageWithURL:url];
+    
+    self.likeLabel.text = [NSString stringWithFormat:@"%@", post[@"likesCount"]];
+    //[self.likeLabel loadInBackground];
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -42,5 +46,28 @@
 }
 
 - (IBAction)likeTapped:(id)sender {
+    if ([[self.likeButton imageForState:UIControlStateNormal] isEqual:[UIImage imageNamed:@"heart"]]) {
+        [self.likeButton setImage:[UIImage imageNamed:@"redd-heart"] forState:UIControlStateNormal];
+        NSString *likesCount = self.post[@"likesCount"];
+        NSInteger likesCountInt = [likesCount integerValue];
+        likesCountInt = likesCountInt + 1;
+        NSString *likesCountString = [NSString stringWithFormat:@"%ld", likesCountInt];
+        self.post[@"likesCount"] = likesCountString;
+        [self.post saveInBackground];
+        
+        
+        
+    } else {
+        [self.likeButton setImage:[UIImage imageNamed:@"heart"] forState:UIControlStateNormal];
+        NSString *likesCount = self.post[@"likesCount"];
+        NSInteger likesCountInt = [likesCount integerValue];
+        likesCountInt = likesCountInt - 1;
+        NSString *likesCountString = [NSString stringWithFormat:@"%ld", likesCountInt];
+        self.post[@"likesCount"] = likesCountString;
+        [self.post saveInBackground];
+    }  
+}
+- (IBAction)propicTapped:(id)sender {
+    
 }
 @end

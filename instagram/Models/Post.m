@@ -16,7 +16,7 @@
 @dynamic author;
 @dynamic caption;
 @dynamic image;
-@dynamic likeCount;
+@dynamic likesCount;
 @dynamic commentCount;
 @dynamic createdAt;
 
@@ -30,7 +30,7 @@
     newPost.image = [self getPFFileFromImage:image];
     newPost.author = [PFUser currentUser];
     newPost.caption = caption;
-    newPost.likeCount = @(0);
+    newPost.likesCount = @"0";
     newPost.commentCount = @(0);
     
     [newPost saveInBackgroundWithBlock: completion];
